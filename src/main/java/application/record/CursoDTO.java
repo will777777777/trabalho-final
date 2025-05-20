@@ -1,14 +1,24 @@
 package application.record;
 
-public class CursoDTO {
-    private Long id;
-    private String nome;
-    private String descricao;
-    private int cargaHoraria;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.util.List;
 
-    public CursoDTO(Curso curso) {
-        this.id = curso.getId();
-        this.nome = curso.getNome();
-        this.descricao = curso.getDescricao();
-        this.cargaHoraria = curso.getCargaHoraria();
-    }
+public record CursoDTO(
+    Long id,
+    
+    @NotBlank(message = "Nome é obrigatório")
+    String nome,
+    
+    @NotBlank(message = "Descrição é obrigatória")
+    String descricao,
+    
+    @NotNull(message = "Carga horária é obrigatória")
+    @Min(value = 1, message = "Carga horária deve ser pelo menos 1 hora")
+    Integer cargaHoraria,
+    
+    List<ModuloDTO> modulos,
+    
+    List<AlunoSimplificadoDTO> alunos
+) {}

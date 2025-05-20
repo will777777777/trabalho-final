@@ -1,28 +1,38 @@
 package application.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "cursos")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Curso {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false, length = 1000)
     private String descricao;
-    private int cargaHoraria;
 
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
-    private List<Modulo> modulos = new ArrayList()<>();
+    @Column(nullable = false)
+    private Integer cargaHoraria;
 
-    @ManyToMany(mappedBy = "cursos")
-    private List<Aluno> alunos = new ArrayList<>();
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Modulo> modulos = new ArrayList<>();
 
-    // Getters e Setters
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Matricula> matriculas = new HashSet<>();
 }
