@@ -1,23 +1,23 @@
+
 package application.record;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
-import java.util.List;
+
+import application.model.Aluno;
 
 public record AlunoDTO(
     Long id,
     
-    @NotBlank(message = "Nome é obrigatório")
     String nome,
     
-    @NotBlank(message = "Email é obrigatório")
-    @Email(message = "Email deve ser válido")
     String email,
     
-    @NotBlank(message = "Senha é obrigatória")
-    @Size(min = 6, message = "Senha deve ter pelo menos 6 caracteres")
-    String senha,
+    String senha
+) {
+    public AlunoDTO(Aluno aluno) {
+        this(aluno.getId(), aluno.getNome(), aluno.getEmail(), null);
+    }
     
-    List<CursoDTO> cursos
-) {}
+    public AlunoDTO withoutSenha() {
+        return new AlunoDTO(id, nome, email, null);
+    }
+}
