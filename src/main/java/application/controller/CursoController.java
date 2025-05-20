@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import application.record.CursoDTO;
 import application.record.GenericResponse;
 import application.service.CursoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 
 @Tag(name = "Cursos")
