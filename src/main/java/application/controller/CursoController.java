@@ -17,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import application.record.CursoDTO;
 import application.record.GenericResponse;
 import application.service.CursoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+import jakarta.validation.Valid;
 
 @Tag(name = "Cursos")
 @RestController
@@ -30,7 +35,7 @@ public class CursoController {
     private CursoService cursoService;
 
     @Operation(
-        summary = "Listar todos os cursos", 
+        summary = "Listar todos os cursos",
         description = "Retorna uma lista de todos os cursos disponíveis"
     )
     @ApiResponses(value = {
@@ -43,7 +48,7 @@ public class CursoController {
     }
 
     @Operation(
-        summary = "Obter detalhes de um curso", 
+        summary = "Obter detalhes de um curso",
         description = "Retorna os detalhes de um curso específico"
     )
     @ApiResponses(value = {
@@ -57,7 +62,7 @@ public class CursoController {
     }
 
     @Operation(
-        summary = "Criar novo curso", 
+        summary = "Criar novo curso",
         description = "Cria um novo curso no sistema"
     )
     @ApiResponses(value = {
@@ -72,7 +77,7 @@ public class CursoController {
     }
 
     @Operation(
-        summary = "Atualizar curso", 
+        summary = "Atualizar curso",
         description = "Atualiza um curso existente"
     )
     @ApiResponses(value = {
@@ -87,7 +92,7 @@ public class CursoController {
     }
 
     @Operation(
-        summary = "Excluir curso", 
+        summary = "Excluir curso",
         description = "Exclui um curso existente"
     )
     @ApiResponses(value = {
