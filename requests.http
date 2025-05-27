@@ -1,5 +1,5 @@
 ### Variáveis globais
-@baseUrl = https://musical-guide-69w7qq75w45rh5rv4-8080.app.github.dev
+@baseUrl = https://musical-guide-69w7qq75w45rh5rv4-8080.app.github.dev/api
 @authToken = {{login.response.body.token}}
 
 ### Registrar novo usuário
